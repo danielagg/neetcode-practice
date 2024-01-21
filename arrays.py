@@ -9,5 +9,16 @@ class Solution:
     def isAnagram(self, s: str, t: str) -> bool:
         return sorted(s) == sorted(t)
 
+    def twoSum(self, nums: List[int], target: int) -> List[int]:
+        numbers = {}
 
-print(Solution().isAnagram("test", "tsset"))
+        for i, n in enumerate(nums):
+            lookingFor = target - n
+            if lookingFor in numbers:
+                return [i, numbers[lookingFor]]
+
+            numbers[n] = i
+        return []
+
+
+print(Solution().twoSum([2, 7, 11, 15], 9))
