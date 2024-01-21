@@ -33,5 +33,19 @@ class Solution:
 
         return list(anagrams.values())
 
+    def topKFrequent(self, nums: List[int], k: int) -> List[int]:
+        scores = {}
 
-print(Solution().groupAnagrams(["eat", "tea", "tan", "ate", "nat", "bat"]))
+        for num in nums:
+            if num in scores:
+                scores[num] += 1
+            else:
+                scores[num] = 1
+
+        sortedScores = sorted(scores.items(), key=lambda x: x[1], reverse=True)
+        topKSortedScores = sortedScores[:k]
+
+        return [score[0] for score in topKSortedScores]
+
+
+print(Solution().topKFrequent([4, 1, -1, 2, -1, 2, 3], 2))
