@@ -20,5 +20,18 @@ class Solution:
             numbers[n] = i
         return []
 
+    def groupAnagrams(self, strs: List[str]) -> List[List[str]]:
+        anagrams = {}
 
-print(Solution().twoSum([2, 7, 11, 15], 9))
+        for word in strs:
+            asSorted = "".join(sorted(word))
+
+            if asSorted in anagrams:
+                anagrams[asSorted].append(word)
+            else:
+                anagrams[asSorted] = [word]
+
+        return list(anagrams.values())
+
+
+print(Solution().groupAnagrams(["eat", "tea", "tan", "ate", "nat", "bat"]))
