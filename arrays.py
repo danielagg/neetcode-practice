@@ -47,5 +47,20 @@ class Solution:
 
         return [score[0] for score in topKSortedScores]
 
+    def productExceptSelf(self, nums: List[int]) -> List[int]:
+        result = [0] * len(nums)
 
-print(Solution().topKFrequent([4, 1, -1, 2, -1, 2, 3], 2))
+        prefix_sum = 1
+        for i in range(len(nums)):
+            result[i] = prefix_sum
+            prefix_sum *= nums[i]
+
+        postfix_sum = 1
+        for i in range(len(nums) - 1, -1, -1):
+            result[i] *= postfix_sum
+            postfix_sum *= nums[i]
+
+        return result
+
+
+print(Solution().productExceptSelf([1, 2, 3, 4]))
